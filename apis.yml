@@ -1,10 +1,20 @@
 aid: atom-power
 name: Atom Power
-description: 'Atom Power is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Atom Power, Inc. is a Charlotte, North Carolina electrical technology company
+  founded in 2014 that invented the Atom Switch, the world''s first commercial UL-listed
+  digital solid-state circuit breaker. The company builds SiC (silicon carbide) power
+  modules, solid-state switchgear and panel-level Level 2 electric-vehicle charging
+  hardware for commercial, industrial, data-center and grid-edge deployments, paired
+  with cloud software for energy management, load balancing and charger operations.
+  Atom Power previously ran an "Atom Cloud" developer portal on Azure API Management
+  at developers.atompower.com with a gateway at api.atompower.com; both hostnames are
+  now dangling CNAMEs to deleted Azure API Management instances, so no public API
+  contract is currently reachable.'
+image: https://static.wixstatic.com/media/9b626a_6de3d6548956428a831983d5b6c5ef13%7Emv2.png/v1/fit/w_2500,h_1330,al_c/9b626a_6de3d6548956428a831983d5b6c5ef13%7Emv2.png
 url: https://raw.githubusercontent.com/api-evangelist/atom-power/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
+x-harvest-source-url: https://forgeglobal.com/atom-power_stock/
 x-tier: stub
 x-tier-reason: harvest
 specificationVersion: '0.20'
@@ -12,6 +22,14 @@ created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
+- Energy
+- Electric Vehicle Charging
+- EV Charging
+- Circuit Protection
+- Solid State Circuit Breaker
+- Electrical Equipment
+- Energy Management
+- Hardware
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +38,49 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/atom-power_stock/
+  url: https://www.atompower.com/
+- type: Blog
+  url: https://www.atompower.com/blog
+- type: BlogRSS
+  url: https://www.atompower.com/blog-feed.xml
+- type: Support
+  url: https://www.atompower.com/contact-us
+- type: PrivacyPolicy
+  url: https://www.atompower.com/privacy-policy
+- type: TermsOfService
+  url: https://www.atompower.com/terms-conditions
+- type: LLMsTxt
+  url: llms/atom-power-llms.txt
+- type: MCPServer
+  url: mcp/atom-power-mcp.yml
+- type: DomainSecurity
+  url: security/atom-power-domain-security.yml
+x-enrichment:
+  date: '2026-08-06'
+  status: minimal
+  artifacts_added: 5
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Atom Power's "Atom Cloud" developer portal and API gateway are decommissioned —
+    developers.atompower.com and api.atompower.com are still published as CNAMEs to
+    Azure API Management, but both targets (apim-obsidian-prod-01.developer.azure-api.net
+    and api-atompower.azure-api.net) return NXDOMAIN, so there is no reachable API,
+    reference, or spec; the live Wix marketing site links no developer program at all.
+  evidence:
+  - url: https://developers.atompower.com/apis
+    status: 0
+    note: 'DNS resolution failed: CNAME target apim-obsidian-prod-01.developer.azure-api.net
+      returns NXDOMAIN'
+  - url: https://api.atompower.com/
+    status: 0
+    note: 'DNS resolution failed: CNAME target api-atompower.azure-api.net returns NXDOMAIN'
+  - url: https://www.atompower.com/openapi.json
+    status: 400
+  - url: https://www.atompower.com/.well-known/agent-card.json
+    status: 400
+  - url: https://www.atompower.com/llms.txt
+    status: 200
+  checked: '2026-08-06'
