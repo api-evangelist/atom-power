@@ -1,0 +1,40 @@
+generated: '2026-08-06'
+method: probed
+source: live probes of every host in apis.yml
+x-note: >-
+  No .well-known documents were found. www.atompower.com is a Wix-hosted site that
+  answers unknown paths with an HTTP 400 Wix error page, so every probe below is a
+  real miss (a control path, /zzz-not-real-1234.txt, returned the same 400 body —
+  no soft-404 credit taken). The Azure API Management hosts that formerly served the
+  Atom Cloud developer portal and gateway could not be probed at all: their CNAME
+  targets return NXDOMAIN.
+hosts:
+- host: https://www.atompower.com
+  documents:
+  - {path: /.well-known/security.txt, status: 400}
+  - {path: /.well-known/agent-card.json, status: 400}
+  - {path: /.well-known/agent.json, status: 400}
+  - {path: /.well-known/openid-configuration, status: 400}
+  - {path: /.well-known/oauth-authorization-server, status: 400}
+  - {path: /.well-known/api-catalog, status: 400}
+  - {path: /.well-known/ai-plugin.json, status: 400}
+  - {path: /openapi.json, status: 400}
+  - {path: /swagger.json, status: 400}
+  - {path: /api-docs, status: 404}
+  - {path: /llms.txt, status: 200, file: ../llms/atom-power-llms.txt}
+  - {path: /robots.txt, status: 200}
+  - {path: /sitemap.xml, status: 200}
+- host: https://developers.atompower.com
+  unreachable: true
+  dns: CNAME apim-obsidian-prod-01.developer.azure-api.net -> NXDOMAIN
+- host: https://api.atompower.com
+  unreachable: true
+  dns: CNAME api-atompower.azure-api.net -> NXDOMAIN
+- host: https://cloud.atompower.com
+  unreachable: true
+  dns: A 20.185.8.175
+  note: TCP connection timed out on 443 and 80 after 30s
+- host: https://docs.atompower.com
+  unreachable: true
+  dns: A 23.236.62.147
+  note: 'TLS handshake failed: tlsv1 alert internal error'

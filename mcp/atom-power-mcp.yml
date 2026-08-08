@@ -1,0 +1,60 @@
+generated: '2026-08-06'
+method: searched
+source: https://www.atompower.com/llms.txt
+status: published
+server:
+  name: atom-power-site-mcp
+  transport: http
+  url: https://www.atompower.com/_api/mcp
+  authentication: none
+  advertised_in: llms/atom-power-llms.txt
+x-note: >-
+  This is the Wix platform Site MCP endpoint, served from Atom Power's own host
+  (www.atompower.com is a Wix-hosted marketing site). It exposes public marketing-site
+  content and the Wix business-solutions API surface — it is NOT an Atom Power product
+  API. Atom Power's product API ("Atom Cloud") ran on Azure API Management at
+  developers.atompower.com / api.atompower.com; both hostnames now resolve to dangling
+  CNAMEs whose Azure API Management targets return NXDOMAIN, so no product-API tool
+  surface exists to catalog. Recorded here because the endpoint is genuinely live and
+  returned a real tools/list, not because it represents a first-party API program.
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://www.atompower.com/_api/mcp
+  method: POST
+  jsonrpc_method: tools/list
+  http_status: 200
+  content_type: application/json; charset=utf-8
+  raw: mcp/atom-power-mcp-tools.json
+tool_count: 9
+tools:
+- name: ReadFullDocsArticle
+  description: Fetches a full Wix docs article or method article with code examples.
+  input: [articleUrl]
+- name: ReadFullDocsMethodSchema
+  description: Fetches the full schema for a Wix API method before calling it.
+  input: [articleUrl, reason]
+- name: BrowseWixRESTDocsMenu
+  description: Browses the Wix REST documentation menu.
+  input: [menuUrl, reason]
+- name: CallWixSiteAPI
+  description: Calls API methods on the site to act on a visitor's behalf.
+  input: [visitorToken, url, method, body]
+- name: GenerateVisitorToken
+  description: Creates a visitor session and returns a visitor access token.
+  input: []
+- name: SearchSiteApiDocs
+  description: Retrieves API documentation for the Wix business solutions installed on this site.
+  input: [searchTerm]
+- name: GetBusinessDetails
+  description: Retrieves business and site details such as timezone, email, phone, address.
+  input: []
+- name: SearchInSite
+  description: Searches the site for information.
+  input: [searchTerm]
+- name: ExecuteWixAPI
+  description: Executes code against the Wix API surface.
+  input: [code, reason, hasMutations, sourceDocUrls, visitorToken]
+crosswalk: null
+crosswalk_reason: >-
+  No tool crosswalk emitted — Atom Power publishes no OpenAPI and no GraphQL surface,
+  so there is no backing operation set to bind these tools to.
